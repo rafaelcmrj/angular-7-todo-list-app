@@ -1,0 +1,35 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-button>AvantLink</button>
+
+    <button mat-button>Overview</button>
+    <button mat-button>Metrics</button>
+    <button mat-button>Affiliates</button>
+    <button mat-button>Tools</button>
+    <button mat-button>Account</button>
+    <button mat-button>Reports</button>
+    <button mat-button>Support</button>
+
+    <span class="fill-remaining-space"></span>
+
+    <button mat-button [matMenuTriggerFor]="menu"> joesoutdoorsupply.com <mat-icon>arrow_drop_down</mat-icon></button>
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Account Settings</button>
+      <button mat-menu-item>Logout</button>
+    </mat-menu>
+
+    <button mat-button aria-label="Credits">
+      <mat-icon>monetization_on</mat-icon>
+    </button>
+
+    <button mat-button aria-label="Notifications">
+      <mat-icon matBadge="15" matBadgeColor="warn">notifications</mat-icon>
+    </button>
+
+    <button mat-button aria-label="Settings">
+      <mat-icon>settings</mat-icon>
+    </button>
+
+  </mat-toolbar-row>
+</mat-toolbar>
