@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TasksService } from 'src/app/shared/services/tasks.service';
 import { Task } from 'src/app/shared/models/task.model';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-tasks',
@@ -12,17 +12,20 @@ import { MatSnackBar } from '@angular/material';
 export class TasksComponent implements OnInit {
 
   @ViewChild('form') ngForm;
+  @ViewChild('dialog') templateDialog;
 
   private _tasksService: TasksService;
   private _snackbar: MatSnackBar;
+  private _dialog: MatDialog;
 
   public tasksForm: FormGroup;
   public hasApplicationID: boolean;
   public tasks: Array<Task>;
 
-  constructor(tasksService: TasksService, snackbar: MatSnackBar) {
+  constructor(tasksService: TasksService, snackbar: MatSnackBar, dialog: MatDialog) {
     this._tasksService = tasksService;
     this._snackbar = snackbar;
+    this._dialog = dialog;
   }
 
   ngOnInit() {
@@ -46,7 +49,7 @@ export class TasksComponent implements OnInit {
       if (request.success) {
         this.tasks.push(request.data);
         this._snackbar.open('Task successfully added', 'Dismiss', {
-          duration: 2500
+          duration: 3000
         });
         this.ngForm.resetForm();
       }
@@ -54,16 +57,19 @@ export class TasksComponent implements OnInit {
   }
 
   delete(task: Task) {
-    if (confirm('Are you sure you want to delete this task?')) {
-      this._tasksService.delete(task.task_id).subscribe(request => {
-        if (request.success) {
-          this.tasks.splice(this.tasks.indexOf(task), 1);
-          this._snackbar.open('Task successfully removed', 'Dismiss', {
-            duration: 2500
-          });
-        }
-      })
-    }
+    const dialogRef = this._dialog.open(this.templateDialog);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this._tasksService.delete(task.task_id).subscribe(request => {
+          if (request.success) {
+            this.tasks.splice(this.tasks.indexOf(task), 1);
+            this._snackbar.open('Task successfully removed', 'Dismiss', {
+              duration: 3000
+            });
+          }
+        })
+      }
+    });
   }
 
   update(task: Task) {
@@ -73,7 +79,7 @@ export class TasksComponent implements OnInit {
       if (request.success) {
         task.editing = false;
         this._snackbar.open('Task successfully edited', 'Dismiss', {
-          duration: 2500
+          duration: 3000
         });
       }
     })

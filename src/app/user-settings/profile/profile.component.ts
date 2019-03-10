@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApplicationsService } from 'src/app/shared/services/applications.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-profile',
@@ -10,11 +11,13 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class ProfileComponent implements OnInit {
 
   private _applicationsService: ApplicationsService;
+  private _snackbar: MatSnackBar;
 
   public profileForm: FormGroup;
 
-  constructor(applicationsService: ApplicationsService) {
+  constructor(applicationsService: ApplicationsService, snackbar: MatSnackBar) {
     this._applicationsService = applicationsService;
+    this._snackbar = snackbar;
   }
 
   ngOnInit() {
@@ -32,8 +35,12 @@ export class ProfileComponent implements OnInit {
         localStorage.setItem('avantlink_profile_email', request.data.email);
         localStorage.setItem('avantlink_profile_first_name', request.data.first_name);
         localStorage.setItem('avantlink_profile_last_name', request.data.last_name);
+
+        this._snackbar.open('Your profile was updated', 'Dismiss', {
+          duration: 3000
+        });
       } else {
-        console.log(request);
+        this._snackbar.open('There was an error updating your profile', 'Dismiss');
       }
     });
   }
