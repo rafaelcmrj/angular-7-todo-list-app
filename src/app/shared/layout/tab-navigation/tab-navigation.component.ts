@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Tab } from '../../models/tab.model';
+import { MenuItem } from '../../models/menu-item.model';
 
 @Component({
   selector: 'app-tab-navigation',
@@ -8,7 +8,7 @@ import { Tab } from '../../models/tab.model';
 })
 export class TabNavigationComponent implements OnInit {
 
-  tabs: Array<Tab> = [
+  tabs: Array<MenuItem> = [
     {
       label: 'Profile',
       path: '/user-settings/profile'

@@ -6,6 +6,7 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { PageHeaderComponent } from './layout/page-header/page-header.component';
 import { TabNavigationComponent } from './layout/tab-navigation/tab-navigation.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     HttpClientModule,
+    RouterModule,
     MatToolbarModule,
     MatIconModule,
     MatMenuModule,

@@ -5,13 +5,7 @@
       <button mat-button><img src="assets/images/avant-logo.png" height="30" alt="AvantLink"></button>
 
       <div class="main-menu">
-        <button mat-button>Overview</button>
-        <button mat-button>Metrics</button>
-        <button mat-button>Affiliates</button>
-        <button mat-button>Tools</button>
-        <button mat-button>Account</button>
-        <button mat-button>Reports</button>
-        <button mat-button>Support</button>
+        <button mat-button *ngFor="let item of menuItems" [routerLink]="[item.path]" [routerLinkActive]="['active']">{{ item.label }}</button>
       </div>
 
       <span class="fill-remaining-space"></span>

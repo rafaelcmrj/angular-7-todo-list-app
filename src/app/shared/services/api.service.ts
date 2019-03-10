@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 
@@ -14,19 +14,19 @@ export class ApiService {
     this._http = http;
   }
 
-  get(path: string, params: HttpParams = new HttpParams()) {
-    return this._http.get(`${environment.api_url}${path}`);
+  get(path: string, params: HttpParams = new HttpParams(), headers: HttpHeaders = new HttpHeaders()): Observable<any> {
+    return this._http.get(`${environment.api_url}${path}`, { headers });
   }
 
-  put(path: string, body: Object = {}) {
-    return this._http.put(`${environment.api_url}${path}`, body);
+  put(path: string, body: Object = {}, headers: HttpHeaders = new HttpHeaders()): Observable<any> {
+    return this._http.put(`${environment.api_url}${path}`, body, { headers });
   }
 
-  post(path: string, body: Object = {}): Observable<any> {
-    return this._http.post(`${environment.api_url}${path}`, body)
+  post(path: string, body: Object = {}, headers: HttpHeaders = new HttpHeaders()): Observable<any> {
+    return this._http.post(`${environment.api_url}${path}`, body, { headers })
   }
 
-  delete(path: string) {
-    return this._http.delete(`${environment.api_url}${path}`);
+  delete(path: string, headers: HttpHeaders = new HttpHeaders()): Observable<any> {
+    return this._http.delete(`${environment.api_url}${path}`, { headers });
   }
 }
