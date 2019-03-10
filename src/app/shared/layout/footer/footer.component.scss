@@ -1,0 +1,10 @@
+@import '../../../../variables';
+
+section.footer {
+  background-color: $bg-footer;
+  color: white;
+  font-size: .875rem;
+  margin-top: 5rem;
+  opacity: .8;
+  padding: .5rem 0;
+}

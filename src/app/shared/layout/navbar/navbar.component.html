@@ -2,15 +2,20 @@
 <section class="top-navbar">
   <div class="container-fluid">
     <div class="row">
-      <button mat-button><img src="assets/images/avant-logo.png" height="30" alt="AvantLink"></button>
 
-      <div class="main-menu">
+      <button mat-button [routerLink]="['/']"><img src="assets/images/avant-logo.png" height="30" alt="AvantLink"></button>
+
+      <mat-menu #mobileMenu="matMenu">
+        <button mat-menu-item *ngFor="let item of menuItems" [routerLink]="[item.path]" [routerLinkActive]="['active']">{{ item.label }}</button>
+      </mat-menu>
+
+      <div class="main-menu d-none d-lg-block">
         <button mat-button *ngFor="let item of menuItems" [routerLink]="[item.path]" [routerLinkActive]="['active']">{{ item.label }}</button>
       </div>
 
       <span class="fill-remaining-space"></span>
 
-      <button mat-button [matMenuTriggerFor]="menu">joesoutdoorsupply.com <mat-icon>arrow_drop_down</mat-icon></button>
+      <button mat-button [matMenuTriggerFor]="menu" class="d-none d-sm-block">joesoutdoorsupply.com <mat-icon>arrow_drop_down</mat-icon></button>
 
       <mat-menu #menu="matMenu">
         <button mat-menu-item>Account Settings</button>
@@ -27,6 +32,10 @@
 
       <button mat-button aria-label="Settings">
         <mat-icon>settings</mat-icon>
+      </button>
+
+      <button mat-button [matMenuTriggerFor]="mobileMenu" aria-label="Menu" class="d-lg-none">
+        <mat-icon>view_headline</mat-icon>
       </button>
     </div>
   </div>
