@@ -1,0 +1,24 @@
+@import '../../../../variables';
+
+section.tab-navigation {
+  .tabs {
+    .tab {
+      background-color: $medium-blue;
+      color: $white-ice;
+      cursor: pointer;
+      margin-left: 1px;
+      min-height: 3.5rem;
+
+      &:first-child {
+        margin: 0;
+      }
+
+      &.active,
+      &:hover {
+        background-color: white;
+        color: $dark-gray;
+      }
+    }
+  }
+
+}

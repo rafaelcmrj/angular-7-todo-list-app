@@ -1,0 +1,12 @@
+@import '../../../../variables';
+
+section.page-header {
+  background-color: $light-blue;
+
+  h1 {
+    color: white;
+    font-weight: 300;
+    font-size: 1.75rem;
+    margin: 1em .5em;
+  }
+}
