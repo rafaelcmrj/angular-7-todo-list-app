@@ -4,6 +4,16 @@ section.top-navbar {
   background-color: $dark-blue;
   color: white;
   padding: .5rem 0;
+
+  .button-merchant {
+    line-height: .75rem;
+
+    .description {
+      font-size: .75rem;
+      font-weight: lighter;
+      margin-left: .25rem;
+    }
+  }
 }
 
 .fill-remaining-space {
